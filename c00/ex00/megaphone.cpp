@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 
 	args = ++argv;
 	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n" ;
 	else
 	{
 		while (*args)
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 			print_arg(*args);
 			args++;
 		}
-		std::cout << std::endl;
+		std::cout << "\n";
 	}
 	return (0);
 }
