@@ -17,8 +17,6 @@ Contact::~Contact(void) {}
 
 bool Contact::setContact()
 {
-    std::string input;
-
     std::cout << "First name: ";
     std::getline(std::cin, firstName);
     if (firstName.empty()) return false;
