@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-C++ = c++
-C++_FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -I includes
+CXX = c++
+CXX_FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -I includes
 INFILE = src/Zombie.cpp src/newZombie.cpp src/randomChump.cpp src/main.cpp \
 
 OBJ = $(INFILE:.cpp=.o)
@@ -21,15 +21,15 @@ NAME = zombie
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	$(C++) $(C++_FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXX_FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(C++) $(C++_FLAGS) -c $< -o $@
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
