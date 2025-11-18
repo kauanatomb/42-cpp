@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CXX = c++
-CXX_FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -I includes
+CXX_FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 INFILE = main.cpp \
 
 OBJ = $(INFILE:.cpp=.o)
