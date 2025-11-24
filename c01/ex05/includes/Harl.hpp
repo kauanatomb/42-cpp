@@ -3,9 +3,8 @@
 
 class Harl {
     private:
-        typedef void (Harl::*Action)();
+        void (Harl::*actions[4])();
         std::string levels[4];
-        Action actions[4];
         void debug(void);
         void info(void);
         void warning(void);
