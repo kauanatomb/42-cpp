@@ -14,8 +14,14 @@
 
 int main(void)
 {
-    Zombie *horde = zombieHorde(5, "test");
-    for(int i = 0; i < 5; i++)
+    int N = 0;
+    Zombie *horde = zombieHorde(N, "test");
+    if (!horde)
+    {
+        std::cout << "Invalid horde size\n";
+        return 1;
+    }
+    for(int i = 0; i < N; i++)
         horde[i].announce();
     delete[] horde;
     return 0;

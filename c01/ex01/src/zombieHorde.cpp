@@ -14,6 +14,8 @@
 
 Zombie  *zombieHorde(int N, std::string name)
 {
+    if (N <= 0)
+        return NULL;
     Zombie *zombieArray = new Zombie[N];
     for(int i = 0; N > i; i++)
         zombieArray[i].setName(name);
