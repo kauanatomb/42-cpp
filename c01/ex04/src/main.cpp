@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-std::string replace_all(std::string line, const std::string& s1, const std::string& s2) {
+std::string replace_all(std::string line, const std::string &s1, const std::string &s2) {
     size_t pos = line.find(s1);
 
     while (pos != std::string::npos) {
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
         return error_message("Error to open file");
 
     std::string outfile = std::string(argv[1]) + ".replace";
-    std::ofstream out(outfile);
+    std::ofstream out(outfile.c_str());
     if (!out.is_open())
         return error_message("Error to create file");
 
