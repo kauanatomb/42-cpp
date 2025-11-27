@@ -20,6 +20,7 @@ int main() {
     Fixed const c(42.42f);      // Float constructor
     Fixed d(b);                 // Copy constructor
     a = Fixed(1234.4321f);      // Assignment
+    Fixed const e(0);           // Int constructor
 
     std::cout << "\n--- Print values ---\n";
     std::cout << "a: " << a << " | int: " << a.toInt() << "\n";
@@ -43,6 +44,8 @@ int main() {
     std::cout << "c - b: " << diff << "\n";
     std::cout << "b * c: " << prod << "\n";
     std::cout << "c / b: " << quot << "\n";
+    Fixed quot2 = c / e;
+    std::cout << "c / e: " << quot2 << "\n";
 
     std::cout << "\n--- Comparison ---\n";
     std::cout << std::boolalpha;

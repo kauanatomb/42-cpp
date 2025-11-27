@@ -85,6 +85,8 @@ Fixed Fixed::operator*(const Fixed& other) const {
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
+    if (other.raw == 0)
+        return Fixed(0);
     Fixed result;
     long tmp = ((long)this->raw << fractionalBits) / other.raw;
     result.raw = tmp;
