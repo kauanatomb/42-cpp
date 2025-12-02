@@ -23,8 +23,9 @@ int main() {
     basePtr->attack("base-intruder");
 
     std::cout << "\n=== Exhausting Energy Points ===\n";
-    for (int i = 0; i < 60; ++i) {
-        s1.attack("dummy");
+    ScavTrap attacker("Soldier");
+    for (int i = 0; i < 52; ++i) {
+        attacker.attack("dummy");
     }
 
     std::cout << "\n=== End of Scope ===" << std::endl;
