@@ -29,8 +29,6 @@ void ClapTrap::attack(const std::string& target) {
         return;
     }
     energyPoints--;
-    if (energyPoints < 0)
-        energyPoints = 0;
     std::cout << "ClapTrap " << name << " attacks " << target
               << ", causing " << attackDamage << " points of damage!\n";
 }
@@ -40,11 +38,10 @@ void ClapTrap::takeDamage(unsigned int amount) {
         std::cout << "ClapTrap " << name << " is already destroyed!\n";
         return;
     }
-    int dmg = static_cast<int>(amount);
-    if (dmg < 0) dmg = 0;
-    hitPoints -= dmg;
-    if (hitPoints < 0)
+    if (amount > static_cast<unsigned int>(hitPoints))
         hitPoints = 0;
+    else
+        hitPoints -= amount;
     std::cout << "ClapTrap " << name << " takes " << amount
               << " points of damage! HP now: " << hitPoints << "\n";
 }
@@ -56,12 +53,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
         return;
     }
     energyPoints--;
-    if (energyPoints < 0)
-        energyPoints = 0;
-    int heal = static_cast<int>(amount);
-    if (heal < 0) heal = 0;
-    hitPoints += heal;
+    hitPoints += amount;
     std::cout << "ClapTrap " << name << " repairs itself, +"
               << amount << " HP! HP now: " << hitPoints << "\n";
 }
-
