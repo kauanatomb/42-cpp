@@ -32,7 +32,7 @@ int main() {
         std::cout << "Original[0] = "
                   << original.getBrain()->getIdea(0) << "\n";
 
-        std::cout << "Copy[0]     = "
+        std::cout << "Copy[0] = "
                   << copy.getBrain()->getIdea(0) << "\n";
     }
 
