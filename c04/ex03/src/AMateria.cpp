@@ -1,5 +1,4 @@
 #include "AMateria.hpp"
-#include <iostream>
 
 AMateria::AMateria(std::string const & t) : type(t) {}
 
@@ -20,8 +19,4 @@ std::string const & AMateria::getType() const {
 
 void AMateria::use(ICharacter& target) {
     (void)target;
-}
-
-void Ice::use(ICharacter& target) {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 }

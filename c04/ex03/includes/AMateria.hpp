@@ -2,7 +2,11 @@
 #define AMateria_HPP
 
 #include <string>
+#include <iostream>
 #include "ICharacter.hpp"
+#include "MateriaSource.hpp"
+
+class ICharacter;
 
 class AMateria {
     protected:
