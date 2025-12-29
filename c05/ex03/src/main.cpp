@@ -22,22 +22,22 @@ int main() {
     std::cout << "Test 2: creating different forms\n";
     Intern intern;
 
-    // sucesso
+    // sucess
     AForm* f1 = intern.makeForm("shrubbery creation", "Home");
     std::cout << "Form created: " << f1->getName() << std::endl;
     delete f1;
 
-    // sucesso
+    // sucess
     AForm* f2 = intern.makeForm("robotomy request", "Bender");
     std::cout << "Form created: " << f2->getName() << std::endl;
     delete f2;
 
-    // sucesso
+    // sucess
     AForm* f3 = intern.makeForm("presidential pardon", "Arthur Dent");
     std::cout << "Form created: " << f3->getName() << std::endl;
     delete f3;
 
-    // falha
+    // fail
     AForm* f4 = intern.makeForm("unknown form", "Target");
     if (!f4)
         std::cout << "returned a null ptr\n";
