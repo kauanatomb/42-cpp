@@ -2,7 +2,7 @@
 
 int main() {
     int a[] = {1, 2, 3, 4};
-    const int b[] = {10, 20, 30};
+    const std::string b[] = {"test1", "test2", "test3"};
 
     iter(a, 4, printInt);
     std::cout << std::endl;
@@ -11,8 +11,7 @@ int main() {
     iter(a, 4, print<int>);
     std::cout << std::endl;
 
-    iter(b, 3, printInt);
-    iter(b, 3, print<int>);
+    iter(b, 3, print<std::string>);
     std::cout << std::endl;
 
     return 0;
