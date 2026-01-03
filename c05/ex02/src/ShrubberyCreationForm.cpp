@@ -10,8 +10,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-    if (this != &other)
+    if (this != &other) {
+        AForm::operator=(other);
         target = other.target;
+    }
     return *this;
 }
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
