@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <type_traits> // apenas para dynamic_cast, sem typeinfo
 
 Base* generate()
 {
@@ -26,6 +25,9 @@ void identify(Base* p)
         std::cout << "B\n";
     else if (dynamic_cast<C*>(p))
         std::cout << "C\n";
+    else
+        std::cout << "Unknown\n";
+
 }
 
 // identify with ref

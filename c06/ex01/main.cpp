@@ -7,7 +7,7 @@ int main() {
 
     Data* ptr = &d;
 
-    uintptr_t raw = Serializer::serialize(ptr);
+    unsigned long raw = Serializer::serialize(ptr);
     Data* deserialized = Serializer::deserialize(raw);
 
     std::cout << "Original pointer: " << ptr << std::endl;
