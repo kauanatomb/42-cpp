@@ -6,11 +6,6 @@
 #include <cctype>
 #include <iomanip>
 
-static bool isCharLiteral(const std::string &s)
-{
-    return (s.length() == 3 && s[0] == '\'' && s[2] == '\'');
-}
-
 static bool isPseudoLiteral(const std::string &s)
 {
     return (s == "nan" || s == "+inf" || s == "-inf"
@@ -82,9 +77,9 @@ void ScalarConverter::convert(const std::string &literal)
     double value;
 
     /* CHAR */
-    if (isCharLiteral(literal))
+    if (literal.length() == 1 && !std::isdigit(literal[0]))
     {
-        value = static_cast<double>(literal[1]);
+        value = static_cast<double>(literal[0]);
     }
     /* PSEUDO */
     else if (isPseudoLiteral(literal))
