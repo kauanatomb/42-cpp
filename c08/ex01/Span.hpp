@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <exception>
+#include <algorithm>
+#include <cstddef>
 
 class Span {
     private:

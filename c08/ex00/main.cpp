@@ -10,7 +10,7 @@ int main() {
 
     try
     {
-        std::vector<int>::iterator it = easyfind(v, 5);
+        std::vector<int>::iterator it = easyfind(v, 2);
         std::cout << "Found: " << *it << std::endl;
     }
     catch (...)

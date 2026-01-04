@@ -1,7 +1,10 @@
 #include "Span.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 int main() {
+    std::srand(std::time(NULL));
     std::cout << "Subject test\n";
     Span sp = Span(5);
     sp.addNumber(6);
