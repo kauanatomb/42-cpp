@@ -22,5 +22,46 @@ int main() {
         ++it;
     }
     std::stack<int> s(mstack);
+
+    std::cout << "\nTEST: with const iterator\n";
+
+    const MutantStack<int> cmstack = mstack;
+
+    MutantStack<int>::const_iterator cit = cmstack.begin();
+    MutantStack<int>::const_iterator cite = cmstack.end();
+
+    while (cit != cite) {
+        std::cout << *cit << std::endl;
+        ++cit;
+    }
+
+    std::cout << "\nTEST: deep copy\n";
+
+    MutantStack<int> copy(mstack);
+    copy.pop();
+
+    std::cout << "Original size: " << mstack.size() << std::endl;
+    std::cout << "Copy size: " << copy.size() << std::endl;
+
+    MutantStack<int> assign;
+    assign.push(42);
+
+    assign = mstack;
+    assign.pop();
+
+    std::cout << "Assigned size: " << assign.size() << std::endl;
+    std::cout << "Original size: " << mstack.size() << std::endl;
+
+    std::cout << "\nTEST: with string type\n";
+
+    MutantStack<std::string> sstack;
+    sstack.push("hello");
+    sstack.push("world");
+
+    for (MutantStack<std::string>::iterator it = sstack.begin();
+        it != sstack.end(); ++it)
+    {
+        std::cout << *it << std::endl;
+    }
     return 0;
 }
