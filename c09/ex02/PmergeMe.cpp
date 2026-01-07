@@ -13,8 +13,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 
 void PmergeMe::makePairs(std::vector< std::pair<int,int> >& pairs,
     bool& hasStraggler, int& straggler) {
+    
     hasStraggler = false;
-
     size_t i = 0;
     for (; i + 1 < vec.size(); i += 2) {
         int a = vec[i];
@@ -32,26 +32,45 @@ void PmergeMe::makePairs(std::vector< std::pair<int,int> >& pairs,
     }
 }
 
-void PmergeMe::insertMinors(const std::vector<int>& minors,
-        std::vector<int>& mainChain) {
-    std::vector<int> jacob;
-    size_t n = minors.size();
+static std::vector<size_t> buildJacobIndices(size_t n) {
+    std::vector<size_t> res;
+    if (n <= 1)
+        return res;
 
-    size_t a = 0, b = 1;
-    while (b < n) {
-        jacob.push_back(b);
-        size_t c = b + 2*a;
+    size_t a = 1;
+    size_t b = 3;
+    while (a < n) {
+        res.push_back(a);
+        size_t c = b + 2 * a;
         a = b;
         b = c;
     }
+    return res;
+}
 
-    if (n > 0)
-        jacob.push_back(0);
+
+void PmergeMe::insertMinors(const std::vector<int>& minors,
+                           std::vector<int>& mainChain)
+{
+    std::vector<size_t> jacob = buildJacobIndices(minors.size());
+    std::vector<bool> used(minors.size(), false);
+
+    for (int i = jacob.size() - 1; i >= 0; --i) {
+        size_t idx = jacob[i];
+        int val = minors[idx];
+
+        std::vector<int>::iterator it =
+            std::lower_bound(mainChain.begin(), mainChain.end(), val);
+        mainChain.insert(it, val);
+        used[idx] = true;
+    }
 
     for (int i = minors.size() - 1; i >= 0; --i) {
+        if (used[i])
+            continue;
         int val = minors[i];
-        std::vector<int>::iterator it = std::lower_bound(mainChain.begin(),
-            mainChain.end(), val);
+        std::vector<int>::iterator it =
+            std::lower_bound(mainChain.begin(), mainChain.end(), val);
         mainChain.insert(it, val);
     }
 }
@@ -73,6 +92,7 @@ void PmergeMe::sortVector() {
     std::sort(mainChain.begin(), mainChain.end());
 
     insertMinors(minors, mainChain);
+
     if (hasStraggler) {
         std::vector<int>::iterator it = std::lower_bound(mainChain.begin(),
             mainChain.end(), straggler);
@@ -89,13 +109,10 @@ void PmergeMe::evaluate(int ac, char **av) {
     for (int i = 1; i < ac; ++i) {
         char *end;
         long n = std::strtol(av[i], &end, 10);
-
         if (*end != '\0' || n < 0 || n > INT_MAX)
             throw std::runtime_error("Error");
-
         vec.push_back(static_cast<int>(n));
     }
-
     if (vec.size() < 2)
         throw std::runtime_error("Error");
 
