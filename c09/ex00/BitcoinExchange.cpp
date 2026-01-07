@@ -11,25 +11,34 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
 
 bool BitcoinExchange::isValidDate(const std::string& date) const {
     if (date.size() != 10 || date[4] != '-' || date[7] != '-')
-		return false;
-	for (int i = 0; i < 10; i++)
-	{
-		if (i == 4 || i == 7)
-			continue;
-		if (!isdigit(date[i]))
-			return false;
-	}
+        return false;
 
-	if (date[5] == '0' && date[6] == '0') 
-		return false;
-	if ((date[5] == '1' && date[6] > '2') || date[5] > '1')
-		return false;
-	if (date[8] == '0' && date[9] == '0')
-		return false;
-	if ((date[8] == '3' && date[9] > '1') || date[8] > '3')
-		return false;
-	
-	return true;
+    for (size_t i = 0; i < date.size(); ++i) {
+        if (i == 4 || i == 7)
+            continue;
+        if (!isdigit(date[i]))
+            return false;
+    }
+    int year  = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day   = std::atoi(date.substr(8, 2).c_str());
+
+    if (month < 1 || month > 12)
+        return false;
+    if (day < 1)
+        return false;
+    if (year < 1)
+        return false;
+
+    static const int daysInMonth[12] = {
+        31, 28, 31, 30, 31, 30,
+        31, 31, 30, 31, 30, 31
+    };
+
+    if (day > daysInMonth[month - 1])
+        return false;
+
+    return true;
 }
 
 void BitcoinExchange::execute(const std::string& filename) const

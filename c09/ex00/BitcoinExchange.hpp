@@ -5,6 +5,7 @@
 #include <string>
 #include <exception>
 #include <iostream>
+#include <cstdlib> 
 # include <fstream>
 # include <sstream>
 
