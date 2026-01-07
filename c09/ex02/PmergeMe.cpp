@@ -99,7 +99,7 @@ void PmergeMe::sortVector() {
         mainChain.insert(it, straggler);
     }
 
-    std::cout << "Sorted sequence: ";
+    std::cout << "After: ";
     for (size_t i = 0; i < mainChain.size(); ++i)
         std::cout << mainChain[i] << " ";
     std::cout << "\n";
@@ -115,6 +115,17 @@ void PmergeMe::evaluate(int ac, char **av) {
     }
     if (vec.size() < 2)
         throw std::runtime_error("Error");
+    
+    std::cout << "Before: ";
+    for (size_t i = 0; i < vec.size(); ++i)
+        std::cout << vec[i] << " ";
+    std::cout << "\n";
 
+    clock_t start = clock();
     sortVector();
+    clock_t end = clock();
+    double duration = double(end - start) / CLOCKS_PER_SEC * 1e6;
+    std::cout << "Time to process a range of " << vec.size()
+          << " elements with std::vector : " 
+          << duration << " us" << std::endl;
 }
